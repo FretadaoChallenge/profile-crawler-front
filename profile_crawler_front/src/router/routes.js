@@ -2,10 +2,22 @@
 const routes = [
   {
     path: '/',
-    component: () => import('layouts/MyLayout.vue'),
-    children: [
-      { path: '', component: () => import('pages/Index.vue') }
-    ]
+    component: () => import('components/Search.vue')
+  },
+  {
+    name: 'show',
+    path: '/show/:id',
+    component: () => import('components/ShowMember.vue')
+  },
+  {
+    name: 'create',
+    path: '/create',
+    component: () => import('components/CreateMember.vue')
+  },
+  {
+    name: 'edit',
+    path: '/edit',
+    component: () => import('components/EditMember.vue')
   }
 ]
 
