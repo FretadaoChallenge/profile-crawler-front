@@ -1,0 +1,19 @@
+version: '3.5'
+services:
+  front:
+    container_name: profile_crawler_front
+    build: .
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/profile_crawler_front
+      - yarn_cache:/profile_crawler_front/node_modules
+    networks:
+      - profile-crawler_default
+
+networks:
+  profile-crawler_default:
+    external: true
+
+volumes:
+  yarn_cache:
