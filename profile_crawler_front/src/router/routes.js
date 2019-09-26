@@ -1,6 +1,7 @@
 
 const routes = [
   {
+    name: 'home',
     path: '/',
     component: () => import('components/Search.vue')
   },

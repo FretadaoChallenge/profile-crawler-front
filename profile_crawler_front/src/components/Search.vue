@@ -1,28 +1,33 @@
 <template>
     <div>
-        <div class="q-ma-lg row">
-            <div class="col-7">
-                <q-input color="teal" filled v-model="searchModel" label="Pesquisar" @keyup.enter="getMembers">
-                    <template v-slot:prepend>
-                        <q-icon name="search"/>
-                    </template>
-                </q-input>
-            </div>
-            <div class="flex col-5 justify-center">
-                <q-btn label="Cadastrar novo usuario" color="blue" class="q-ma-sm" @click="CreateRedirect()"/>
-            </div>
-        </div>
-        <div v-for="member in members" :key="member.id">
-            <div class="q-pa-md q-gutter-sm">
-                <q-banner inline-actions rounded class="bg-blue text-white">
-                    Nome: {{member.name}}
-                    <p>Twitter URL: {{member.shortened_url}}</p>
-                    <template v-slot:action>
-                        <q-btn flat label="Twitter" @click="twitterRedirect(member.shortened_url)" />
-                        <q-btn flat label="Editar" @click="EditRedirect(member.id)"/>
-                        <q-btn flat label="Visualizar" @click="ShowRedirect(member.id)"/>
-                    </template>
+        <div class="q-pa-lg rw">
+            <q-banner rounded class="bg-white seach-baner">
+                <div class="q-ma-lg row">
+                    <div class="col-7">
+                        <q-input color="teal" outlined v-model="searchModel" label="Pesquisar" @keyup.enter="getMembers">
+                            <template v-slot:prepend>
+                                <q-icon name="search"/>
+                            </template>
+                        </q-input>
+                    </div>
+                </div>
             </q-banner>
+        </div>
+        <div>
+            <div v-for="member in members" :key="member.id">
+                <div class="q-pa-md q-gutter-sm">
+                    <q-banner inline-actions rounded class="bg-white text-black seach-baner">
+                        <div class="text-format">
+                            <b>Nome:</b> {{member.name}}
+                            <p><b>Twitter URL:</b> {{member.shortened_url}}</p>
+                        </div>
+                        <template v-slot:action>
+                            <q-btn color="white text-blue" label="Twitter" @click="twitterRedirect(member.shortened_url)" />
+                            <q-btn color="white text-blue" label="Editar" @click="EditRedirect(member.id)"/>
+                            <q-btn color="white text-blue" label="Visualizar" @click="ShowRedirect(member.id)"/>
+                        </template>
+                </q-banner>
+                </div>
             </div>
         </div>
     </div>
@@ -61,9 +66,6 @@ export default {
             id: memberId
         }})
     },
-    CreateRedirect () {
-        this.$router.push({name: 'create'})
-    },
     EditRedirect (memberId) {
         this.$router.push({name: 'edit', params: {
             id: memberId
@@ -74,5 +76,14 @@ export default {
 </script>
 
 <style>
-
+.seach-baner {
+    min-width: 450px;
+    background: white;
+    border: 1px solid lightgray;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+}
+.text-format {
+    font-size: 15px;
+    font-style: inherit
+}
 </style>

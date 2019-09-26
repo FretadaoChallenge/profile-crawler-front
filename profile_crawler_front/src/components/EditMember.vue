@@ -1,14 +1,18 @@
 <template>
-    <div class="q-pa-md q-gutter-sm">
-            <q-input color="teal" filled v-model="name"
-                    label="Nome" :placeholder="memberData.name">
-            </q-input>
-            <q-input color="teal" filled v-model="twitterUrl"
-                    label="Nome"
-                    :placeholder="memberData.twitter_profile_address">
-            </q-input>
-            <q-btn label="Enviar" @click="SendInformations()" color="blue"/>
-    </div>
+  <div class="q-pa-lg">
+    <q-banner rounded class="bg-white text-black edit-baner">
+      <div class="q-pa-md q-gutter-sm">
+          <q-input color="teal" outlined v-model="name"
+                  label="Nome" :placeholder="memberData.name">
+          </q-input>
+          <q-input color="teal" outlined v-model="twitterUrl"
+                  label="Nome"
+                  :placeholder="memberData.twitter_profile_address">
+          </q-input>
+          <q-btn label="Enviar" @click="SendInformations()" color="blue"/>
+      </div>
+    </q-banner>
+  </div>
 </template>
 
 <script>
@@ -62,5 +66,10 @@ export default {
 </script>
 
 <style>
-
+.edit-baner {
+  min-width: 450px;
+  background: white;
+  border: 1px solid lightgray;
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+}
 </style>
