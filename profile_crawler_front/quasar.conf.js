@@ -43,9 +43,9 @@ module.exports = function (ctx) {
 
       components: [],
       directives: [],
-
+      
       // Quasar plugins
-      plugins: []
+      plugins: ['Notify', 'LoadingBar', 'Loading']
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/supporting-ie

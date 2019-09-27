@@ -21,6 +21,15 @@
 <script>
 
 import axios from 'axios'
+import { Notify } from 'quasar'
+// import { LoadingBar } from 'quasar'
+import {
+  Loading,
+
+  // optional!, for example below
+  // with custom spinner
+  QSpinnerGears
+} from 'quasar'
 
 export default {
   data () {
@@ -32,19 +41,31 @@ export default {
 
   methods: {
       SendInformations () {
-        axios
+        //   LoadingBar.start()
+          axios
             .post('http://localhost:3000/members', {
                 name: this.name,
                 twitter_profile_address: this.twitterUrl
             })
             .then((response) => {
+                Notify.create({
+                    message: 'Usuário cadastrado com sucesso',
+                    color: 'blue',
+                    position: 'bottom',
+                });
                 this.$router.push({name: 'show', params: {
                     id: response.data.id
                 }})
             })
-            .catch(function (error) {
-                console.log(error);
+            .catch((error) => {
+                console.log(error.response.data);
+                Notify.create({
+                    message: 'Erro na criação do usuario',
+                    color: 'blue',
+                    position: 'bottom',
+                });
             });
+            // LoadingBar.stop()
       }
   }
 }

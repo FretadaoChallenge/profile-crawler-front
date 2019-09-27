@@ -10,6 +10,8 @@
                   :placeholder="memberData.twitter_profile_address">
           </q-input>
           <q-btn label="Enviar" @click="SendInformations()" color="blue"/>
+          </q-input>
+          <q-btn label="Cancelar" @click="Cancelar()" color="white" text-color="black" />
       </div>
     </q-banner>
   </div>
@@ -44,22 +46,26 @@ export default {
             this.twitterUrl = res.data.twitter_profile_address
           })
           .catch((err) => console.log(err))
-      },
-    
+    },
+
     SendInformations () {
-        axios
-            .put(`http://localhost:3000/members/${this.memberData.id}`, {
-                name: this.name,
-                twitter_profile_address: this.twitterUrl
-            })
-            .then((response) => {
-                this.$router.push({name: 'show', params: {
-                    id: response.data.id
-                }})
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+      axios
+        .put(`http://localhost:3000/members/${this.memberData.id}`, {
+            name: this.name,
+            twitter_profile_address: this.twitterUrl
+        })
+        .then((response) => {
+            this.$router.push({name: 'show', params: {
+                id: response.data.id
+            }})
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    },
+
+    Cancelar () {
+      this.$router.push({name: 'home'})
     }
   }
 }

@@ -36,6 +36,7 @@
 <script>
 
 import axios from 'axios'
+import { Notify } from 'quasar'
 
 export default {
   data () {
@@ -52,12 +53,34 @@ export default {
           .get(searchUrl)
           .then((res) => {
             this.members = res.data
+            Notify.create({
+              message: 'Pesquisa retornou com sucesso',
+              color: 'blue',
+              position: 'bottom',
+            });
           })
-          .catch((err) => console.log(err))
+          .catch((err) => {
+              console.log(err)
+              Notify.create({
+                message: 'Não existem usuários cadastrados com esse nome',
+                color: 'blue',
+                position: 'bottom',
+              });
+          })
       },
     
     twitterRedirect: function (url) {
        window.open(url, "_blank");    
+    },
+
+    isEmpty(obj) {
+        for(var prop in obj) {
+          if(obj.hasOwnProperty(prop)) {
+            return false;
+          }
+        }
+        
+        return JSON.stringify(obj) === JSON.stringify({});
     },
 
     ShowRedirect (memberId) {
